@@ -35,7 +35,8 @@ def add_route(url: str,
             callback(request, *args, **kwargs)
         json_response = jsonify(response)
         if headers is not None:
-            json_response.headers.update(headers)
+            for hkey in headers.keys():
+                json_response.headers.add(hkey, headers[hkey])
         return json_response, status_code
 
 
